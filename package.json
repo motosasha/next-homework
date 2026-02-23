@@ -1,0 +1,56 @@
+{
+  "name": "next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx --max-warnings=0",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "lint:css": "stylelint \"**/*.{css,scss,module.css}\" --fix",
+    "lint:all": "bun lint && bun lint:css && bun run format:check",
+    "lint:next": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "next": "16.2.4",
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
+  },
+  "devDependencies": {
+    "@stylistic/stylelint-config": "^4.0.0",
+    "@stylistic/stylelint-plugin": "^5.1.0",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^25",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "clsx": "^2.1.1",
+    "eslint": "^10.2.1",
+    "eslint-config-next": "16.2.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "postcss-styled-syntax": "^0.7.1",
+    "prettier": "^3.8.3",
+    "prettier-plugin-multiline-arrays": "^4.1.5",
+    "sass": "^1.99.0",
+    "stylelint": "17.8.0",
+    "stylelint-config-clean-order": "^8.0.1",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-order": "^8.1.1",
+    "typescript": "^6"
+  },
+  "ignoreScripts": [
+    "sharp",
+    "unrs-resolver"
+  ],
+  "trustedDependencies": [
+    "sharp",
+    "unrs-resolver"
+  ]
+}

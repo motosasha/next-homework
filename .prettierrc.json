@@ -1,0 +1,26 @@
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": false,
+  "singleAttributePerLine": false,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "proseWrap": "preserve",
+  "plugins": ["prettier-plugin-multiline-arrays"],
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": {
+        "parser": "scss",
+        "printWidth": 60,
+        "tabWidth": 2,
+        "useTabs": false,
+        "singleAttributePerLine": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+.button-like {
+  cursor: pointer;
+  user-select: none;
+
+  overflow: visible;
+  display: inline-flex;
+  align-items: end;
+  justify-content: center;
+
+  width: auto;
+  margin: 0;
+  padding: 0 2px;
+  border: none;
+  border-radius: 0;
+
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--tertiary);
+
+  appearance: none;
+  background-color: transparent;
+  outline-offset: 0;
+  box-shadow: none;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--link-hover);
+      transition: color var(--transition-default);
+    }
+  }
+}
+
+.icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}

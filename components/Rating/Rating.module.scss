@@ -1,0 +1,17 @@
+.rating {
+  display: flex;
+}
+
+.star {
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--accent-hover);
+    }
+  }
+}
+
+.active {
+  color: var(--accent);
+}
