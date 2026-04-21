@@ -1,14 +1,17 @@
 "use client";
 
+import { useState, useRef } from "react";
+
 import { Button } from "@/components/Button";
 import { CardMini, CardMiniProps } from "@/components/CardMini";
 import { Heading } from "@/components/Heading";
+import { Like } from "@/components/Like";
 import { Paragraph } from "@/components/Paragraph";
 import { Rating } from "@/components/Rating";
 import { Tag } from "@/components/Tag";
-import { useState, useRef } from "react";
 
 export default function Home() {
+  const id: number = 13;
   const cardMiniData: CardMiniProps = {
     title: "Как работать с CSS Grid",
     description: (
@@ -29,7 +32,37 @@ export default function Home() {
   };
 
   const myRef = useRef<HTMLDivElement>(null);
-  const [rating, setRating] = useState(3);
+  const [rating, setRating] = useState<number>(3);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLikeToggle = async (newState: boolean) => {
+    const previousState = isLiked;
+    setIsLiked(newState);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/posts/${id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            liked: newState,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      );
+      if (!response.ok) throw new Error("Ошибка сервера");
+      console.log(`Пост ${id} успешно обновлен. Новый статус:`, newState);
+    } catch (error) {
+      console.error("Не удалось обновить лайк:", error);
+      setIsLiked(previousState);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -37,6 +70,12 @@ export default function Home() {
       <Heading as="h2">Heading 2</Heading>
       <Heading as="h3">Heading 3</Heading>
       <Heading as="h4">Heading 4</Heading>
+      <hr />
+      <Like
+        isLiked={isLiked}
+        onLikeChange={handleLikeToggle}
+        disabled={isLoading}
+      />
       <hr />
       <Button variant="primary" arrow="right">
         My button
@@ -83,9 +122,7 @@ export default function Home() {
       <hr />
       <CardMini {...cardMiniData} />
       <hr />
-
       <Rating ref={myRef} value={rating} setRating={setRating} />
-      {/*<Rating isEditable={true} />*/}
       <hr />
       <br />
       <br />
